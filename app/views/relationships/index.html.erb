@@ -1,0 +1,34 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class='left'>
+      <a href='#' class='link icon-only open-panel'>
+        <i class='icon icon-bars'></i>
+      </a>
+    </div>
+    <div class='center'>
+      All posts
+    </div>
+  </div>
+</div>
+
+
+<div class="pages navbar-through toolbar-through">
+  <div class='page'>
+    <div class='page-content'>
+      <div class='list-block media-list'>
+        <ul>
+          <% @sent_invites.each do |invitation| %>
+              <li swipeout transitioning>
+                <div class="item-content">
+                  <div class="item-title-row">
+                  <div class="item-title"><%= link_to invitation.invited_user.email, user_path(invitation.invited_user) %></div>
+                  </div>
+                
+                </div>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

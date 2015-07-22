@@ -1,0 +1,39 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class="left sliding">
+         <%= link_to( raw('<i class="icon icon-back"></i>'), @user, { :class => "link icon-only back", "data-reload" => 'true',  "data-ignoreCache" => 'true' } ) %>
+
+      </div>
+      <div class="center sliding">Following</div>
+      <div class="right"></div>
+   </div>
+</div>
+
+
+<div class="pages navbar-through toolbar-through">
+  <div class='page'>
+    <div class='page-content follow'>
+      <div class='list-block'>
+        <ul>
+          <% @sent_invites.each do |invitation|  %>
+              
+              <li class="item-content">
+                   <div class="item-media"><p class="round-image-25 list-image" style="background : url('<%= invitation.invited_user.avatar.url(:medium) %>') no-repeat center center; "></p></div>
+                   <div class="item-inner">
+                   <%= link_to user_path(invitation.invited_user), {:class=>""} do %>
+                     <div class="item-title"><%= invitation.invited_user.first_name + " " + invitation.invited_user.last_name %></div>
+                     <% end %>
+
+                     <% if @user == current_user %>
+                     <div class="item-after">
+                     <a class="button button-round active" relationship-id="<%= invitation.id %>"><i class="fa fa-check"></i> Followed</a>
+                     </div>
+                     <% end %>
+                   </div>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

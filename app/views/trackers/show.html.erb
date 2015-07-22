@@ -1,0 +1,41 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class="left sliding">
+         <%= link_to( raw('<i class="icon icon-back"></i>'), @user, { :class => "link icon-only back", "data-reload" => 'true',  "data-ignoreCache" => 'true' } ) %>
+
+      </div>
+      <div class="center sliding"><%= @tracker.tracker_model.name %></div>
+      <div class="right"></div>
+   </div>
+</div>
+
+
+<div class="pages navbar-through toolbar-through">
+  <div class='page'>
+    <div class='page-content follow'>
+      <div class='list-block'>
+          <div class="tracker-header cover" style="background: url('<%= asset_path("png/trackers/"+@tracker.tracker_model.name.downcase.tr(" ", "_")+".png") %>') no-repeat center center; ">
+           <div class="black-overlay">
+            <div class="track-header-title">
+              
+              <h2 class="white center uppercase no-margin"><%= @tracker.service.service_model.name %> <%= @tracker.tracker_model.name %></h2>
+              <h4 class="white center uppercase no-margin third-size light">Last Synchronization <%= time_ago_in_words(current_user.last_sync) unless current_user.last_sync.blank? %> ago</h4>
+             
+            </div>
+          </div>
+          </div>
+      </div>
+
+      <h2 class="center no-margin third-size"><%= @tracker_metrics.count %> Features supported by this tracker</h2>
+      <div class="row list-metrics">
+          <!-- Each "cell" has col-[widht in percents] class -->
+          <% @tracker_metrics.each do |metric| -%>
+          <div class="col-33">
+          <div class="round-image-35 round cover center" style="background: url('<%= asset_path("svg/metric_"+ metric.code+".svg") %>') no-repeat center center; "></div>
+          <h3 class="center no-margin"><%= metric.name %></h3>
+          <h4 class="center no-margin light"><%= metric.description %></h4>
+          </div>
+          <% end %>
+      </div>
+  </div>
+</div>

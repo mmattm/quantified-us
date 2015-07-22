@@ -1,0 +1,80 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class="left sliding">
+        <a href='#' class='link icon-only open-panel'>
+        <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <div class="center sliding">Settings</div>
+      <div class="right"></div>
+   </div>
+</div>
+<div class="pages navbar-through toolbar-through">
+   <div class='page layout-white'>
+      <div class="page-content">
+        
+            <div class="content-block-title">Privacy & Datas</div>
+                <div class="list-block">
+                  <ul>
+                    <li class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Private Data</div>
+                        <div class="item-after">
+                           <label class="label-switch">
+                              <input type="checkbox" name="metric" checked>
+                              <div class="checkbox"></div>
+                           </label>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Refresh automatically</div>
+                        <div class="item-after">
+                           <label class="label-switch">
+                              <input type="checkbox" name="metric" checked>
+                              <div class="checkbox"></div>
+                           </label>
+                        </div>
+                      </div>
+                    </li>
+                   
+                  </ul>
+                  
+                </div>
+                <div class="content-block-title">Profile</div>
+                <div class="list-block">
+                  <ul>
+                    <li> 
+                        <%= link_to edit_user_registration_path, :class => 'item-link item-content' do %>
+                          <div class="item-inner">
+                            <div class="item-title">Edit Profile</div>
+                          </div>
+                        <% end %>
+                    </li>
+                    <li>
+                        <%= link_to services_path, :class => 'item-link item-content' do %>
+                          <div class="item-inner">
+                            <div class="item-title">Services</div>
+                          </div>
+                        <% end %>
+                    </li>
+                    <li>
+                        <a href="#" class="item-link item-content">
+                          <div class="item-inner">
+                            <div class="item-title">Feedbacks</div>
+                          </div>
+                        </a>
+                    </li>
+                  </ul>
+                </div>
+
+            <div class="content-block-title">
+               <p class="buttons-row">
+                  <%= button_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, :class => 'button button-big button-round button-fill color-red'%>
+               </p>
+            </div>
+
+      </div>
+   </div>
+</div>

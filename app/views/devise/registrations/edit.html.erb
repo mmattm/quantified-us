@@ -1,0 +1,133 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class="left sliding">
+         <%= link_to( raw('<i class="icon icon-back"></i>'), current_user, { :class => "link icon-only with-animation back"} ) %>
+      </div>
+      <div class="center sliding">Edit your profile</div>
+      <div class="right"></div>
+   </div>
+</div>
+<div class="pages navbar-through toolbar-through">
+   <div class='page layout-white'>
+      <div class="page-content">
+         <div class="content-block-title">Your informations</div>
+         <div class="list-block">
+            <ul>
+               <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+               <div class="content-block">
+                  <%= devise_error_messages! %>
+               </div>
+               <li>
+                  <div class="item-content">
+                     <div class="item-inner">
+                        <div class="item-title label"><%= f.label :avatar %></div>
+                        <div class="item-input">
+                           <%= f.file_field :avatar, :placeholder => 'Profile Picture'  %>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="item-content">
+                     <div class="item-inner">
+                        <div class="item-title label"><%= f.label :first_name %></div>
+                        <div class="item-input">
+                           <%= f.text_field :first_name, :placeholder => 'first name' %>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="item-content">
+                     <div class="item-inner">
+                        <div class="item-title label"><%= f.label :last_name %></div>
+                        <div class="item-input">
+                           <%= f.text_field :last_name, :placeholder => 'Last name' %>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <label class="label-radio item-content">
+                     <!-- Checked by default -->
+                     <%= f.radio_button :is_female, false, :checked => true %> 
+                     <div class="item-inner">
+                        <%= f.label :is_female, "Male" %>
+                     </div>
+                  </label>
+               </li>
+               <!-- Another radio input -->
+               <li>
+                  <label class="label-radio item-content">
+                     <!-- Checked by default -->
+                     <%= f.radio_button :is_female, true %>
+                     <div class="item-inner">
+                        <%= f.label :is_female, "Female" %>
+                     </div>
+                  </label>
+               </li>
+               <li>
+                  <div class="item-content">
+                     <div class="item-inner">
+                        <div class="item-title label"><%= f.label :date_of_birth %></div>
+                        <div class="item-input">
+                           <%= f.date_select :date_of_birth, :placeholder => 'birth date' %>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="item-content">
+                     <div class="item-inner">
+                        <div class="item-title label"><%= f.label :email %></div>
+                        <div class="item-input">
+                           <%= f.email_field :email, :placeholder => 'email' %>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="item-content">
+                     <div class="item-inner">
+                        <div class="item-title label"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></div>
+                        <div class="item-input">
+                           <%= f.password_field :password, autocomplete: "off" %>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="item-content">
+                     <div class="item-inner">
+                        <div class="item-title label"><%= f.label :password_confirmation %></div>
+                        <div class="item-input">
+                           <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+               <li>
+                  <div class="item-content">
+                     <div class="item-inner">
+                        <div class="item-title label"><%= f.label :current_password %><i>(we need your current password to confirm your changes)</i></div>
+                        <div class="item-input">
+                           <%= f.password_field :current_password, autocomplete: "off" %>
+                        </div>
+                     </div>
+                  </div>
+               </li>
+                   
+            </ul>
+               <div class="content-block-title">
+                     <%= f.submit "Update", :class => 'button button-round button-big active ' %>
+                </div>
+            <% end %>
+            <div class="content-block-title">
+               <p class="buttons-row">
+                  <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => 'button button-big button-round button-fill color-red'%>
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

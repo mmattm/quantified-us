@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', rel: 'apple-touch-icon', type: 'image/png' %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Your app title -->
+    <title>Quantified—Us</title>
+    <!-- Path to Framework7 Library CSS-->
+    <%= stylesheet_link_tag  "phone", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag  "font-awesome", media: "all", "data-turbolinks-track" => true  %>
+    <%= stylesheet_link_tag  "application", media: "all", "data-turbolinks-track" => true  %>
+ 
+    <%= include_gon %>
+  </head>
+  <body class='phone' ng-app="datavizualisation" ng-controller="DataCtrl" >
+
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+
+    <!-- Views -->
+    <div class="views">
+      <div class="view view-main layout-dark theme-white">
+        <%= yield %>
+      </div>
+    </div>
+
+     <!-- TODO: PUT IN SPECIAL LAYOUT Links popover -->
+    <div class="popover popover-links">
+      <div class="popover-angle"></div>
+      <div class="popover-inner">
+        <div class="list-block theme-black layout-white">
+          <ul>
+            <li><a class="list-button item-link close-popover" ng-click="toggleInterval('live')" ng-class="interval_display == 'Live' ? 'selected' : 'none'">Live </a></li>
+            <li><a class="list-button item-link close-popover" ng-click="toggleInterval('1w')" ng-class="interval_display == 'Last Week' ? 'selected' : 'none'">Last Week</a></li>
+            <li><a class="list-button item-link close-popover" ng-click="toggleInterval('1m')" ng-class="interval_display == 'Last Month' ? 'selected' : 'none'">Last Month</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "phone" %>
+    <%= javascript_include_tag "app" %>
+    
+    
+    <%= javascript_include_tag "angular/tc-angular-chartjs" %>
+    <%= javascript_include_tag "angular/main" %>
+    <%= javascript_include_tag "angular/controllers/ParticipantCtrl" %>
+    <%= javascript_include_tag "angular/controllers/TypeCtrl" %>
+    <%= javascript_include_tag "angular/controllers/CommentCtrl" %>
+    <%= javascript_include_tag "angular/controllers/DataCtrl" %>
+
+    <%= javascript_include_tag "angular/controllers/MapCtrl" %>
+    <%= javascript_include_tag "angular/controllers/ParticipantMapCtrl" %>
+
+    <%= javascript_include_tag "angular/scrollglue" %>
+    <%= javascript_include_tag "angular/scripts/ng-map" %>
+    <%= javascript_include_tag "http://maps.google.com/maps/api/js" %>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!-- Left panel with reveal effect-->
+<div class="panel panel-left panel-reveal">
+   <div class="view">
+      <div class="pages">
+         <div class="page">
+            <div class="page-content">
+            <div class="content-block panel-profile">
+            <%= link_to( current_user, { :class => "close-panel"}) do %>
+            <p class="round-image-50 center" style="background : url('<%= current_user.avatar.url(:medium) %>') no-repeat center center; "></p>
+            <h5 class="center uppercase no-margin-bottom"><%= current_user.first_name %> <%= current_user.last_name %></h5>
+            <h5 class="center uppercase no-margin panel-location"><i class="fa fa-location-arrow"></i> <%= current_user.city %>, <%= current_user.country %></h5>
+            <% end %>
+            </div>
+               <div class="list-block uppercase panel-nav">
+                  <ul>
+                    <li><h3><%= link_to( "Dashboard", { :controller => "users", :action => "dashboard", :id => current_user }, { :class => "close-panel",  "data-reload" => 'true',  "data-ignoreCache" => 'true' } ) %></h3></li>
+                    <li><h3><%= link_to( "Circles & Maps", { :controller => "circles", :action => "index" }, { :class => "close-panel"} ) %></h3></li>
+                    <li><h3><%= link_to( "Trackers", trackers_path, { :class => "close-panel"} ) %></h3></li>
+
+                    <li><h3><%= link_to( "My Profile", current_user, { :class => "close-panel"} ) %></h3></li>
+
+                    <li><h3><%= link_to( "Settings", settings_path, { :class => "close-panel"} ) %></h3></li>
+
+                    <li><h3><%= link_to('Logout', destroy_user_session_path, :method => :get, :class => "external") %> </li>
+                  </ul>
+               </div>
+             
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

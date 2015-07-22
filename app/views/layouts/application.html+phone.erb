@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', rel: 'apple-touch-icon', type: 'image/png' %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Your app title -->
+    <title>Quantified—Us</title>
+    <!-- Path to Framework7 Library CSS-->
+    <%= stylesheet_link_tag  "phone", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag  "font-awesome", media: "all", "data-turbolinks-track" => true  %>
+    <%= stylesheet_link_tag  "application", media: "all", "data-turbolinks-track" => true  %>
+ 
+    <%= include_gon %>
+  </head>
+  <body class='phone layout-dark'>
+
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <% if user_signed_in? %>
+    <div class="panel-overlay"></div>
+    <%= render 'application/phone/left_panel' %>
+    <% end %>
+    <!-- Views -->
+    <div class="views">
+      <div class="view view-main">
+        
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "phone" %>
+    <%= javascript_include_tag "app" %>
+    <%= javascript_include_tag "relationships" %>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+
+
+    <%= javascript_include_tag "circles" %>
+  </body>
+</html>

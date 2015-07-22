@@ -1,0 +1,39 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class='left'>
+         <%= link_to( raw('<i class="icon icon-back"></i>'), @user, { :class => "link icon-only back", "data-reload" => 'true',  "data-ignoreCache" => 'true' } ) %>
+      </div>
+      <div class='center sliding'>
+         <div class="navbar-logo middle">Location (3/3)</div>
+      </div>
+      <div class='right sliding'>
+      </div>
+   </div>
+</div>
+<div class="pages navbar-through fixed-through">
+   <div class='page' data-page="new-map-3">
+
+      <div class='page-content new-circle'>
+
+      <div id="distance-selector">
+         <div id="circle"></div>
+         <div class="distance-info">
+         <h3 class="center no-margin">Drag to extend distance</h3>
+         <h1 class="center distance-number no-margin"><span class="distance-number-calcul">1'000</span> m</h1>
+         </div>
+         
+            <a class="complete-map button-map third-size button-next button button-big active">COMPLETE</a>
+        
+      </div>
+
+      <div class="button-map-container">
+       <a class="button-next-position button-map third-size button-next button button-big active">Select this place <i class="fa fa-map-marker"></i></a>
+      </div>
+
+      <input id="pac-input" class="controls" type="text" placeholder="Search for a location">
+        <div id="map-canvas"></div>
+
+      <!-- <div class="button-next complete third-size button button-big active">Complete</div> -->
+      </div>
+   </div>
+</div>

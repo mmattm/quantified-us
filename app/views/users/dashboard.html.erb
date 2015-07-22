@@ -1,0 +1,122 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class='left'>
+         <a href='#' class='link icon-only open-panel'>
+         <i class="fa fa-bars"></i>
+         </a>
+      </div>
+      <div class='center'>
+         <div class="navbar-logo middle"><%= image_tag("svg/navbar-logo.svg", size: "100x26") %></div>
+      </div>
+      <div class='right'>
+         <a href="#" class="link icon-only">
+         <i class="fa fa-search"></i>
+         </a>
+      </div>
+   </div>
+</div>
+<div class="pages navbar-through fixed-through">
+   <div id="dashboard" class='page' data-page="dashboard">
+      <div class="swiper-container-dashboard swiper-init" data-speed="700" data-parallax="true">
+         <div class="poly parallax-bg" data-swiper-parallax="-23%"></div>
+         <div class="dashboard-nav-shadow"></div>
+         <div class="dashboard-nav parallax-bg" data-swiper-parallax="-160">
+            <div class="content-block">
+               <ul id="dashboard-list">
+                  <li>Hello</li>
+                  <li>Activity</li>
+                  <li>Statistics</li>
+               </ul>
+            </div>
+         </div>
+         <div class="swiper-wrapper">
+            <div class="swiper-slide">
+               <div class="dashboard-hello">
+                  <div class="dashboard-hello-inner">
+                     <h1 class="big">Hi <%= current_user.first_name %>, You have <%= @circles_count %> Circles & <%= @maps_count %> maps</h1>
+                     <h3> <i class="fa fa-refresh fa-spin"></i> Last Synchronization <%= time_ago_in_words(current_user.last_sync) unless current_user.last_sync.blank? %> ago </h3>
+                     <p><%= link_to "Sync your datas", sync_datas_path, :class => 'external button button-big' %></p>
+                  </div>
+               </div>
+            </div>
+            <div class="swiper-slide">
+               <!-- Vertical nested child slider -->
+               <div class="feed swiper-container swiper-init" data-direction="vertical">
+                  <div class="swiper-wrapper">
+                     <div class="swiper-slide">
+                        <div class="element">
+                           <div class="list-user">
+                              <p class="round-image-25 list-image" style="background : url('<%= @random_user1.avatar.url(:medium) %>') no-repeat center center; "></p>
+                              <div class="list-name">
+                                 <div class="element-date light">30 MIN AGO</div>
+                                 <span class="bold">STACY MARTIN  </span>
+                                 <span class="list-sync light">is now following you</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="element">
+                           <div class="list-user">
+                              <p class="round-image-25 list-image" style="background : url('<%= @random_user2.avatar.url(:medium) %>') no-repeat center center; "></p>
+                              <div class="list-name">
+                                 <div class="element-date light">45 MIN AGO</div>
+                                 <span class="bold">ALEXEY RYBIN</span>
+                                 <span class="list-sync light">Invite you to join <a class="bold">Family</a></span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="element">
+                           <div class="list-user">
+                              <p class="round-image-25 list-image" style="background : url('<%= @random_user2.avatar.url(:medium) %>') no-repeat center center; "></p>
+                              <div class="list-name">
+                                 <div class="element-date light">1 HOUR AGO</div>
+                                 <span class="bold">STACY MARTIN  </span>
+                                 <span class="list-sync light">REPLIED TO YOUR COMMENT IN <a class="bold">FAMILY</a></span>
+                              </div>
+                              <div class="element-message">
+                                 “I really don’t get what all the fuss is about.
+                                 She could never compare to Cindy, Christy
+                                 and others”
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="swiper-slide"><span>Vertical Slide 2</span></div>
+                     <div class="swiper-slide"><span>Vertical Slide 3</span></div>
+                  </div>
+               </div>
+            </div>
+            <div class="swiper-slide">
+               
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- POLY  -->
+<style>
+   .poly {
+   -webkit-clip-path: polygon(<%= @shape[0] %>% <%= @shape[1] %>%, <%= @shape[2] %>% <%= @shape[3] %>%, <%= @shape[4] %>% <%= @shape[5] %>%, <%= @shape[6] %>% <%= @shape[7] %>%);
+   clip-path: polygon(31% 15%, 76% 12%, 67% 95%, 10% 79%);
+   background: linear-gradient(40deg, <%= @poly[0] %>, <%= @poly[1] %>, <%= @poly[2] %>, <%= @poly[3] %>, <%= @poly[3] %>);
+   background-size: 1000% 1000%;
+   -webkit-animation: AnimationName 30s ease infinite;
+   -moz-animation: AnimationName 30s ease infinite;
+   animation: AnimationName 30s ease infinite;
+   /*   animation: show 500ms ease-in 100ms forwards;*/
+   }
+   /*@-webkit-keyframes AnimationName {
+   0%{background-position:0% 63%}
+   50%{background-position:100% 38%}
+   100%{background-position:0% 63%}
+   }
+   @-moz-keyframes AnimationName {
+   0%{background-position:0% 63%}
+   50%{background-position:100% 38%}
+   100%{background-position:0% 63%}
+   }
+   @keyframes AnimationName { 
+   0%{background-position:0% 63%}
+   50%{background-position:100% 38%}
+   100%{background-position:0% 63%}
+   }*/
+</style>

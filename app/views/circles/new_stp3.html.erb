@@ -1,0 +1,59 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class='left'>
+         <%= link_to( raw('<i class="icon icon-back"></i>'), @user, { :class => "link icon-only back", "data-reload" => 'true',  "data-ignoreCache" => 'true' } ) %>
+      </div>
+      <div class='center sliding'>
+         <div class="navbar-logo middle">Participants (3/3)</div>
+      </div>
+      <div class='right sliding'>
+      </div>
+   </div>
+</div>
+<div class="pages navbar-through fixed-through">
+   <div class='page' data-page="new-circle-3">
+      <!-- Search bar -->
+       <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar searchbar-init">
+         <div class="searchbar-input">
+           <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+         </div><a href="#" class="searchbar-cancel">Cancel</a>
+       </form>
+      
+       <!-- Search bar overlay -->
+       <div class="searchbar-overlay"></div>
+
+         <div class='page-content new-circle'>
+            <div class="content-block searchbar-not-found">
+            Nothing found  
+            </div>
+             <div class="list-block list-block-search searchbar-found">
+
+            <ul class="chart-list">
+               <% @participants.each do |participant| %>
+               <li>
+                  <div class="list-label-inner">
+                     <div class="list-user">
+                       <div class="round-image-25 list-image " style="background : url('<%= participant.inviting_user.avatar.url(:medium) %>') no-repeat center center; "></div>
+                        <div class="list-name single">
+                           <span class="bold item-title">
+                           <%= participant.inviting_user.first_name + " " + participant.inviting_user.last_name %>
+                           </span>
+                        
+                        </div>
+                     </div>
+                     <div class="list-label">
+                        <label class="label-switch">
+                           <input type="checkbox" name="participants" participant="<%= participant.inviting_user.id.to_s %>">
+                           <div class="checkbox"></div>
+                        </label>
+                     </div>
+                  </div>
+               </li>
+                <% end %>
+            </ul>
+            </div>
+            <div class="button-next complete third-size button button-big active">Complete</div>
+          
+         </div>
+      </div>
+</div>

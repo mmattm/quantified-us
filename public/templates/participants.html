@@ -1,0 +1,24 @@
+<ul class="chart-list">
+    <li ng-repeat="participant in participants track by $index">
+        <div class="list-label-inner">
+            <div class="list-user">
+                <div class="list-image round-image-25" ng-style="{'background-image':'url( '+  participant.attributes['avatar-url']  + ')'}"></div>
+                <div class="list-name">
+                    <span class="bold">
+					{{participant.attributes["first-name"]}} {{participant.attributes["last-name"]}}
+					
+					</span>
+                    <span class="list-sync light">
+					<i class="fa fa-refresh fa-spin"></i>  {{participant.attributes["last-sign-in-at"] | date:'yyyy-MM-dd — HH:mm:ss  '}} 
+					</span>
+                </div>
+            </div>
+            <div class="list-label">
+                <label class="label-switch">
+                    <input type="checkbox" ng-change="toggleDatas()" ng-model="checkboxUser[participant.id]">
+                    <div class="checkbox" ng-style="{'background':participantColor[participant.id]}"></div>
+                </label>
+            </div>
+        </div>
+    </li>
+</ul>

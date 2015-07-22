@@ -1,0 +1,75 @@
+<div class="pages">
+<div class="page black-background theme-white custom-white" data-page="Home">
+
+  <!-- <div class="navbar">
+    <div class="navbar-inner">
+      <div class="left"></div>
+      <div class="center">Login</div>
+      <div class="right"></div>
+    </div>
+  </div> -->
+  <div class="header-home cover">
+  </div>
+
+
+    <div class="page-content">
+          <div class="content-block no-margin">
+            <h1 class="no-margin center">Quantified — Us</h1>
+            <h2 class="no-margin center">A Social Quantified Platform <%= @aaa %></h2>
+            <p><a href="#" class="open-login-screen button button-big button-round active third-size">Sign In</a></p>
+            </div>
+            <div class="content-block">
+            
+            <p class="center">Not an account yet ?</p>
+            <p><%= link_to "Register For Free", {:controller => "/services", :action => "index"}, :class => 'button third-size button-big' %></p>
+            </div>
+        
+     </div> 
+       
+      <div class="login-screen" >
+            <!-- Default view-page layout -->
+            <div class="view">
+              <div class="page black-background">
+              <a class="close-login-screen right"><i class="fa fa-times"></i></a>
+                <!-- page-content has additional login-screen content -->
+                <div class="page-content login-screen-content">
+                  <h1 class="center">Sign In</h1>
+                 
+                  <!-- Login form -->
+                 
+                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                     
+                    <div class="list-block layout-dark">
+                      <ul>
+                        <li class="item-content field">
+                          <div class="item-inner">
+                            <div class="item-title label"><%= f.label :email %></div>
+                            <div class="item-input">
+                              <%= f.email_field :email, autofocus: false, :placeholder => "Your Email" %>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-inner field">
+                            <div class="item-title label"><%= f.label :password %></div>
+                            <div class="item-input">
+                              <%= f.password_field :password, autocomplete: "off", :placeholder => "Your Password"  %>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="content-block">
+                          <%= f.submit "Log in", :class => 'third-size button button-big button-round active' %>
+                    </div>
+                    <% end %>
+                     <p><%= link_to "Sign in with services", {:controller => "/services", :action => "index"}, :class => 'third-size button button-big' %></p>
+                  
+                </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  </div>
+
+

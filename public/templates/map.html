@@ -1,0 +1,14 @@
+<!-- <map center="37.09024, -95.712891" zoom="4" maytypeid="TERRAIN"> -->
+<map center="{{ position.latitude }}, {{ position.longitude }}" zoom="{{ zoom }}" disable-default-u-i="true" banner>
+		<shape name="circle" ng-repeat="city in cities"
+		stroke-color="#1CE8D5"
+		stroke-opacity="0.8"
+		stroke-weight="0"
+		fill-color="#1CE8D5"
+		fill-opacity="0.35"
+		center="{{city.position}}"
+		radius="{{city.radius}}">
+	</shape>
+
+	<marker ng-repeat="user in users" icon="{{image}}" title="{{user[0]}}" position="{{user[1]}}, {{user[2]}}" z-index="{{user[3]}}"></marker>
+</map>

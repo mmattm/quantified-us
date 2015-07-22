@@ -1,0 +1,36 @@
+<div id="chart-messages">
+
+	<div ng-repeat="(key,val) in comments" class="messages messages-init" data-auto-layout="true" data-new-messages-first="false" id="messages" >
+
+		<!-- Date stamp -->
+		<div class="messages-date"> {{ key }} </div>
+
+		<span ng-repeat="comment in val">
+		
+			<!-- Sent message (by default - green and on right side) -->
+			<div class="message message-sent"  ng-if="comment['user-id'] == current_id">
+				<!-- Bubble with text -->
+				<div class="message-text">{{ comment.message }}</div>
+			</div>
+
+			<!-- Received message (by default - grey on left side) -->
+			<div class="message message-with-avatar message-received" ng-if="comment['user-id'] != current_id">
+				<!-- Sender name -->
+				<div class="message-name">{{ participants[comment['user-id']].attributes['first-name'] }}</div>
+
+				<!-- Bubble with text -->
+				<div class="message-text">{{ comment.message }}</div>
+
+				<!-- Sender avatar -->
+				<div ng-style="{'background-image':'url( '+ participants[comment['user-id']].attributes['avatar-url'] + ')'}" class="message-avatar"></div>
+			</div>
+		</span>
+
+	</div>
+</div>
+
+<div id="chart-toolbar" class="toolbar messagebar" ng-hide="location.path() != '/comments'">
+	  <div class="toolbar-inner">
+	    <textarea id="text-message" placeholder="Message" ng-model="textModel"></textarea><a ng-click="sendMessage()" class="link">Send</a>
+	  </div>
+</div>

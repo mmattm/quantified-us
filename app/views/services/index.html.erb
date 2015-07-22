@@ -1,0 +1,43 @@
+<div class="pages">
+<div class="page navbar-fixed" data-page="Register">
+   <div class="navbar theme-white">
+      <div class="navbar-inner">
+         <div class="left"> 
+            <a href="#" class="link icon-only back">
+            <i class="icon icon-back"></i>
+            </a>
+         </div>
+         <div class="center">Services</div>
+         <div class="right"></div>
+      </div>
+   </div>
+   <div class="page-content">
+      <div class="content-block black">
+         <h2 class="center uppercase">Choose an activity tracking service</h2>
+      </div>
+      <div class="content-block black">
+         <h3>Activity Trackers</h3>
+         <div class="row">
+            <% @services.each_with_index  do |service, index| -%>
+            <div class="col-50 service-element">
+               <div class="service-name">
+                  <h4 class="uppercase"><%= service.name -%></h4>
+               </div>
+               <%= link_to image_tag("png/services/"+service.name+".png", :border => 0, :width => "100%"), user_omniauth_authorize_path(@services_provider[index].parameterize.underscore.to_sym) , {:class => 'external'} %>
+            </div>
+            <% end -%>
+         </div>
+      </div>
+      <div class="content-block black">
+         <h3>Services</h3>
+         <div class="row">
+            <div class="col-50 service-element">
+               <div class="service-name">
+                  <h4 class="uppercase">Health Kit</h4>
+               </div>
+               <%= link_to image_tag("png/services/healthkit.png", :border => 0, :width => "100%"), user_omniauth_authorize_path(:jawbone) , {:class => 'external'} %>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

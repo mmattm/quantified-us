@@ -1,0 +1,89 @@
+
+<div class="pages">
+<div data-page="chart" class="page-white navbar-fixed">
+  <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+              <%= link_to( raw('<i class="icon icon-back"></i>'), { :controller => "circles", :action => "index" }, { :class => "link icon-only external"} ) %>
+              </div>
+        <div class="center"><%= @map.name %></div>
+
+       <div class="right"><a class="ac"> Edit </a></div>
+       
+      </div>
+  </div>
+
+
+  <div class="page-content messages-content"> 
+        
+            <div id="canvas-charts">
+              
+              <!-- Slider container -->
+              <div class="swiper-container swiper-init">
+              <div id="data-interval"><a data-popover=".popover-links" class="open-popover pointer" ng-cloak> <i class="{{ picto }}"></i> {{ interval_display }} <i class="fa fa-angle-down"></i></a> </div>
+              <div id="gradient-top"></div>
+              <!-- Pagination, if required -->
+              <div class="swiper-pagination color-white"></div>
+
+                  <!-- Slides wrapper -->
+                  <div class="swiper-wrapper">
+                      <!-- Slides -->
+                      <div id="chart-line" class="swiper-slide">
+                        <div class="inner-canvas-charts">
+                          <div class="chart">
+                           <canvas id="canvas_line" tc-chartjs chart-type="line" chart-type-obj="line" chart-data="data_line" height="250" chart-options="lineOptions" chart-legend="legend_line"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="chart-doughnut" centerchart class="swiper-slide">
+
+                        <div class="inner-canvas-charts">
+                        <span id="doughnut-total" centerchart>{{ total }}<span class="number light">Overall score</span></span>
+                         <div class="chart">
+                           <canvas tc-chartjs chart-type="doughnut" chart-options="doughnutOptions" chart-type-obj="doughnut" chart-data="data_doughnut" height="190"></canvas>
+                         </div>
+                        </div>
+                      </div>
+                      <div id="chart-radar" centerchart class="swiper-slide">
+                        <div class="inner-canvas-charts">
+                         <div class="chart">
+                           <canvas tc-chartjs chart-type="radar" chart-options="radarOptions" chart-type-obj="radar" chart-data="data_radar" height="200"></canvas>
+                         </div>
+                        </div>
+                      </div>
+                      <div id="chart-bar" class="swiper-slide">
+                        <div class="inner-canvas-charts">
+                         <div class="chart">
+                           <canvas tc-chartjs chart-type="bar" chart-options="barOptions" chart-type-obj="bar" chart-data="data_line" height="250"></canvas>
+                         </div>
+                        </div>
+                      </div>
+                      <div id="chart-circle" class="swiper-slide">
+                        <div class="inner-canvas-charts">
+                         <div class="chart">
+                           <canvas tc-chartjs chart-type="line" chart-options="circleOptions" chart-type-obj="circle" chart-data="data_circle" height="250"></canvas>
+                         </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div id="legend">
+                  <ul class="paritipant-list" ng-controller="ParticipantMapCtrl" ng-cloak>
+                    <li ng-repeat="participant in participants track by $index"><span ng-style="{'color':participantColor[$index]}">  {{participant}} </span></li>
+                  </ul>
+                  </div>
+                  
+              </div>
+            </div> 
+            <div id="chart-nav">
+              <a ng-href="#/map_participants" ng-class="location.path() == '/map_participants' ? 'active' : ''"><span class="bold" ng-cloak>{{ participant_count }}</span>Participants</a>
+              <a ng-href="#/metrics" ng-class="location.path() == '/metrics' ? 'active' : ''"><span class="bold" ng-cloak>{{ nbr_types }}</span>Metrics</a>
+              <a ng-href="#/map" ng-class="location.path() == '/map' ? 'active' : ''"><span class="bold"><i class="fa fa-map-marker"></i></span>Map</a>
+            </div>
+
+           
+            <div id="chart-view" banner scroll-glue="location.path() == '/comments' ? true : false" ng-view> </div>
+
+  </div> 
+
+</div>
+</div>

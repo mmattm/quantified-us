@@ -1,0 +1,41 @@
+<div class="navbar theme-white">
+  <div class="navbar-inner">
+    <div class='left'>
+      <a href='#' class='link icon-only open-panel'>
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+    <div class="center sliding">Trackers</div>
+    <% if (@user == current_user) %>
+      <div class='right sliding'>
+        <p><%= link_to 'Edit',edit_user_registration_path, :class => 'link' %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="pages navbar-through fixed-through">
+  <div class='page' data-page="trackers">
+    <div class='page-content'>
+      <h2 class="center"><%= @trackers.count %> Activity Tracker synced</h2>
+      <% @trackers.each do |tracker| -%>
+        <%= link_to tracker do %>
+          <div class="cover tracker-list-element" style="background : url('<%= asset_path("png/trackers/"+tracker.tracker_model.name.downcase.tr(" ", "_")+".png") %>') no-repeat center center; ">
+            <div class="black-overlay">
+              <h2 class="white center uppercase no-margin"><%= tracker.service.service_model.name %> <%= tracker.tracker_model.name %></h2>
+            </div>
+          </div>
+        <% end %>
+        <div class="cover tracker-list-element" style="background : url('<%= asset_path("png/trackers/up2.png") %>') no-repeat center center; ">
+          <div class="black-overlay">
+            <h2 class="white center uppercase no-margin">Jawbone UP2</h2>
+          </div>
+        </div>
+        <div class="cover tracker-list-element" style="background : url('<%= asset_path("png/trackers/fuelband.png") %>') no-repeat center center; ">
+          <div class="black-overlay">
+            <h2 class="white center uppercase no-margin">Nike+ Fuelband</h2>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

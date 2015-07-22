@@ -1,0 +1,3 @@
+class DataObjsController < ApplicationController
+
+end

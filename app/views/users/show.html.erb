@@ -1,0 +1,70 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class='left'>
+         <% if (@user == current_user) %>
+         <a href='#' class='link icon-only open-panel'>
+         <i class="fa fa-bars"></i>
+         <% else %>
+         <%= link_to( raw('<i class="icon icon-back"></i>'), '', { :class => "link icon-only back"} ) %>
+         <% end %>
+         </a>
+      </div>
+      <div class='center sliding'>
+         <div class="navbar-logo middle"><%= image_tag("svg/navbar-logo.svg", size: "100x26") %></div>
+      </div>
+      <% if (@user == current_user) %>
+      <div class='right sliding'>
+         <p><%= link_to 'Edit',edit_user_registration_path, :class => 'link' %></p>
+      </div>
+      <% end %>
+   </div>
+</div>
+<div class="pages navbar-through fixed-through">
+   <div class='page' data-page="profile">
+      <div class='page-content'>
+         <div class="content-block black profile-image bottom-separator">
+            <li class="round-image-50 center" style="background : url('<%= @user.avatar.url(:medium) %>') no-repeat center center; "></li>
+            <div class="profile-name">
+               <h1 class="center no-margin"><%= @user.first_name + " " + @user.last_name %></h1>
+               <h5 class="center uppercase no-margin panel-location"><i class="fa fa-location-arrow"></i> <%= @user.city %>, <%= @user.country %></h5>
+                <h5 class="center uppercase no-margin panel-location"><%= distance_of_time_in_words(Time.now, @user.date_of_birth) + " old" unless @user.date_of_birth.blank? %></h5>
+                <h5 class="center uppercase no-margin panel-location"><i class="fa fa-refresh fa-spin"></i> Last Synchronization <%= time_ago_in_words(@user.last_sync) unless @user.last_sync.blank? %> ago</h5>
+               <div class="profile-following">
+               <% if (@user != current_user) %>
+               <% @relationship = current_user.sent_invites.where(invited_id: @user.id).first %>
+                   <% if @relationship %>
+                   <%= link_to @relationship, method: :delete, :class => 'external third-size button button-big button-round' do %>
+                    <i class="fa fa-user-times"></i> Unfollow
+                   <% end %>
+
+                   <% else %>
+                       <%= form_for :relationship, url: relationships_path, html: { method: :post } do |f| %>
+                       <%= f.hidden_field :invited_id, value: @user.id %>
+                       <%= button_tag(type: 'submit', class: "third-size button button-big button-round active") do %>
+                        <i class="fa fa-user-plus"></i> Follow
+                       <% end %>
+                       <% end %>
+                   <% end %>
+               <% end %>
+               </div>
+            </div>
+         </div>
+         <div class="content-block profile-options black">
+         <div class="row">
+           
+           <div class="col-50"><%= link_to followers_path, :id => @user  do %><h3 class="light center"><p class="round-image-35 list-image center" style="background : url(<%=asset_path('svg/icon_followers.svg')%>) no-repeat center center; "></p><%= @user_followers %> Follower(s)</h3><% end %></div>
+           
+           <div class="col-50"><%= link_to following_path, :id => @user  do %><h3 class="light center"><p class="round-image-35 list-image center" style="background : url(<%=asset_path('svg/icon_following.svg')%>) no-repeat center center; "></p><%= @user_following %> Following</h3><% end %></div>
+         </div>
+         <div class="row">
+           <div class="col-33"><h3 class="light center"><p class="round-image-35 list-image center" style="background : url(<%=asset_path('svg/icon_circle.svg')%>) no-repeat center center; "></p><%= @user.circles.count %> Circle(s)</h3></div>
+          
+           <div class="col-33"><h3 class="light center"><p class="round-image-35 list-image center" style="background : url(<%=asset_path('svg/icon_map.svg')%>) no-repeat center center; "></p><%= @user.maps.count %> Map(s)</h3></div>
+          
+           <div class="col-33"><h3 class="light center"><p class="round-image-35 list-image center" style="background : url(<%=asset_path('svg/icon_tracker.svg')%>) no-repeat center center; "></p><%= @user.trackers.count %> Tracker(s)</h3></div>
+         </div>
+   
+         </div>
+      </div>
+   </div>
+</div>

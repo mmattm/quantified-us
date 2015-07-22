@@ -1,0 +1,64 @@
+<div class="navbar theme-white">
+   <div class="navbar-inner">
+      <div class='left'>
+           <a href='#' class='link icon-only open-panel'>
+         <i class="fa fa-bars"></i>
+      </div>
+      <div class='center sliding'>
+         <div class="navbar-logo middle"><%= image_tag("svg/navbar-logo.svg", size: "100x26") %></div>
+      </div>
+     
+      <div class='right sliding'>
+          <a href="#" class="circle-new-options link icon-only"> 
+          <i class="fa fa-plus"></i>
+         </a>
+      </div>
+   </div>
+</div>
+
+<div class="pages navbar-through fixed-through">
+   <div class='page' data-page="circles">
+      <div class='page-content'>
+      <div class="row no-gutter circle-nav">
+        <div class="col-50"><a href="#" class="circles-link"><h2 class="center active"><%= image_tag('svg/icon_circle.svg') %> Circles</h2></a></div>
+         <div class="col-50"><a href="#" class="maps-link"><h2 class="center"><%= image_tag('svg/icon_map.svg') %> Maps</h2></a></div>
+      </div>
+      <div class="circles-elements">
+        <div class="row no-gutter">
+           <% @circles.each do |circle| -%>
+             <%= link_to circle, class: "circle external col-50" do  %>
+             <p class="round-image-35 round list-image center" style=""></p>
+             <h4 class="center no-margin"><%= circle.name %> </h4>
+             <% if User.find(circle.admin_id) != current_user %>
+             <h5 class="center no-margin circle-list-owner blue">by <%= User.find(circle.admin_id).first_name + " " + User.find(circle.admin_id).last_name %> </h5>
+             <% else %>
+             <h5 class="center no-margin circle-list-owner grey">by you</h5>
+             <% end %>
+             <div class="row no-gutter">
+               <div class="col-33"><h4 class="center no-margin"><i class="fa fa-users"></i> <%= circle.users.count %></h4></div>
+               <div class="col-33"><h4 class="center no-margin"><i class="fa fa-bar-chart"></i> <%= User.group_supported_metrics(circle.users).count %></h4></div>
+                <div class="col-33"><h4 class="center no-margin"><i class="fa fa-comments"></i> <%= circle.comments.count %></h4></div>
+             </div>
+             <% end -%>
+             <% end -%>
+        </div>
+      </div>
+      <div class="maps-elements">
+        <div class="row no-gutter"> 
+              <% @maps.each do |map| -%>
+              <%= link_to map, class: "map external col-50" do  %>
+              <p class="round-image-35 round list-image center" style="background : url('http://maps.googleapis.com/maps/api/staticmap?center=<%= map.latitude %>, <%= map.longitude %>&zoom=13&scale=2&size=150x150&maptype=roadmap&format=png&visual_refresh=true') no-repeat center center;"></p>
+              <h4 class="center no-margin"><%= map.name %> </h4>
+              <div class="row no-gutter">
+                <div class="col-50"><h4 class="center no-margin"><i class="fa fa-map-marker"></i> <%= map.distance.to_i %> m</h4></div>
+                <div class="col-50"><h4 class="center no-margin"><i class="fa fa-bar-chart"></i> <%= User.supported_metrics(current_user).count %></h4></div>
+              </div>
+              <% end -%>
+              <% end -%>
+        </div>
+      </div>
+     </div>
+
+  </div>
+</div>
+
