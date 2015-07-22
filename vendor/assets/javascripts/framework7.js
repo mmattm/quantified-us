@@ -6505,9 +6505,10 @@
                     if (clicked.is(app.params.externalLinks)) {
                         if(clicked.attr('target') === '_system') {
                             e.preventDefault();
-                            //window.open(url, '_system');
-                            window.location = url; // Custom fix
+                            window.open(url, '_system');
                         }
+                        console.log("external");
+                        window.location=url;
                         return;
                     }
                 }
