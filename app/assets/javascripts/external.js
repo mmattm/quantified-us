@@ -22,6 +22,7 @@ if (("standalone" in window.navigator) && window.navigator.standalone) {
     {
         a[i].onclick=function()
         {
+        	console.log("external");
             window.location=this.getAttribute("href");
             return false
         }
