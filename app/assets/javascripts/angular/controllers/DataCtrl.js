@@ -73,8 +73,14 @@
 			$scope.toggleDatas();
 		}
 
+		$scope.toggleSwitch = function() {
+			console.log($scope.checkboxUser);
+		}
+
 		$scope.toggleDatas = function() {
 			
+				console.log("data");
+
 			switch($scope.interval) {
 				case '1w':
 				$scope.interval_display = 'Last Week';
