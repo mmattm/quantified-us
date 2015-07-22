@@ -15,31 +15,14 @@ class ApplicationController < ActionController::Base
     gon.root_path = request.base_url
   end
 
-
   def after_sign_in_path_for(user)
     User.updateLocation(user, request)
-    # user = current_user
-    # # —— UPDATE LOCATION AT SIGN IN
-    # @location = request.location
-    # pp "DEBUG ————"
-    # pp @location
-
-    # if(@location.present?)
-    #   user.lat = @location.latitude
-    #   user.lng = @location.longitude
-    #   user.city = @location.city
-    #   user.country = @location.country
-    #   user.save
-    #   puts @location.city
-    #   puts request.remote_ip()
-    # end
-    # User.sync_datas_process
   end
+
 
   private
 
   def after_sign_out_path_for(resource_or_scope)
-    pp "sign_out"
     root_path
   end
 

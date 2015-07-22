@@ -9,8 +9,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           
           sign_in @user#this will throw if @user is not activated
           #redirect_to @user
-          pp "location"
-          pp request
           
           User.updateLocation(@user, request)
           redirect_to dashboard_path
@@ -28,7 +26,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def jawbone
       @user = User.from_omniauth(request.env["omniauth.auth"])
-      pp request.env["omniauth.auth"]
       redirect_to root_path
      
   end

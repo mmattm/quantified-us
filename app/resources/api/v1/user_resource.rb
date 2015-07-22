@@ -48,7 +48,6 @@ module Api
 									records = records.where(_model_class.arel_table[filter].matches(val))
 							end
 						end
-						pp "return"
 						return records
 
 					end

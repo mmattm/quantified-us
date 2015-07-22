@@ -33,7 +33,7 @@
             <div class="swiper-slide">
                <div class="dashboard-hello">
                   <div class="dashboard-hello-inner">
-                     <h1 class="big">Hi <%= current_user.first_name %>, You have <%= @circles_count %> Circles & <%= @maps_count %> maps</h1>
+                     <h1 class="big">Hi <%= current_user.first_name %>, You have <%= @circles_count %> Circles & <%= @maps_count %> Maps</h1>
                      <h3> <i class="fa fa-refresh fa-spin"></i> Last Synchronization <%= time_ago_in_words(current_user.last_sync) unless current_user.last_sync.blank? %> ago </h3>
                      <p><%= link_to "Sync your datas", sync_datas_path, :class => 'external button button-big' %></p>
                   </div>

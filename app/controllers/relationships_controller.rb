@@ -27,7 +27,6 @@ class RelationshipsController < ApplicationController
       flash[:success] = "Successfully invited"
 
       if request.xhr?  # ajax request
-        pp "XHR"
         respond_to do |format|
           format.js {render :nothing => true}
         end
@@ -42,10 +41,8 @@ class RelationshipsController < ApplicationController
 
 
   def destroy
-    pp "DESTROY " + params[:id]
     @relationship = Relationship.find(params[:id])
 
-    pp @relationship.inviting_user
     if @relationship.inviting_user == current_user
       @relationship.destroy
       flash[:success] = "Removed relationship"

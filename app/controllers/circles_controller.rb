@@ -56,23 +56,15 @@ class CirclesController < ApplicationController
 	end
 
 	def create
-		pp "DEBUG ———————"
-		pp params[:name]
-		pp params[:admin_id]
-		pp params[:participants]
-		pp params[:metrics]
-
+		
 		circle          = Circle.new
 		circle.name     = params[:name]
 		circle.admin_id = params[:admin_id]
 		admin = User.find(circle.admin_id)
 		participants = User.find(params[:participants])
 
-		pp participants
-
 		admin.circles << circle
 		participants.each do |participant|
-			#pp participant
 			participant.circles << circle
 		end
 		

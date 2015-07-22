@@ -3,10 +3,7 @@ class UsersController < ApplicationController
   skip_before_filter :verify_signed_out_user
 
   def index
-    pp "DEBUG ——————— "
-    #pp User.supported_metrics(current_user)
-    # pp User.cool
-    pp "—————————————— "
+    
   end
 
   def show
