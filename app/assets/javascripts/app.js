@@ -38,6 +38,13 @@
     });
 
     //window.Phone.Views.Main.loadPage('/');
+    var $$ = Dom7;
+    $$('.external').on('click', function (e) { 
+        console.log("click");
+        event.preventDefault();
+        window.location = $(this).attr("href");
+    });
+
 
     $('form#new_user').submit(function() {
         var valuesToSubmit = $(this).serialize();
@@ -66,14 +73,6 @@
         })
     });
 
-    var a=document.getElementsByClassName("external");
-    for(var i=0;i<a.length;i++)
-    {
-        a[i].onclick=function()
-        {
-            window.location=this.getAttribute("href");
-            return false
-        }
-    }
 
+    
 })();
