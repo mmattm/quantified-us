@@ -37,14 +37,6 @@
         }
     });
 
-    //window.Phone.Views.Main.loadPage('/');
-    var $$ = Dom7;
-    $$('.external').on('click', function (e) { 
-        console.log("click");
-        event.preventDefault();
-        window.location = $(this).attr("href");
-    });
-
 
     $('form#new_user').submit(function() {
         var valuesToSubmit = $(this).serialize();
