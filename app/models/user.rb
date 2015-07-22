@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 
   def self.updateLocation(user, request)
     @location = request.location
-    pp @location
+    puts @location
 
     if(@location.present?)
       user.lat = @location.latitude
@@ -59,8 +59,8 @@ class User < ActiveRecord::Base
       user.city = @location.city
       user.country = @location.country
       user.save
-      pp @location.city
-      pp request.remote_ip()
+      puts @location.city
+      puts request.remote_ip()
     end
   end
 
