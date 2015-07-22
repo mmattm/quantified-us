@@ -6507,9 +6507,7 @@
                             e.preventDefault();
                             window.open(url, '_system');
                         }
-                        console.log("external");
-                        window.location=url;
-                        return false;
+                        return;
                     }
                 }
         
