@@ -13,4 +13,5 @@ Rails.application.config.assets.precompile += %w( phone.css )
 Rails.application.config.assets.precompile += %w( phone.js )
 Rails.application.config.assets.precompile += %w( font-awesome.css )
 Rails.application.config.assets.precompile += %w( app.js )
+Rails.application.config.assets.precompile += %w( circles.js )
 
