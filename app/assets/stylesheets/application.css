@@ -74,6 +74,8 @@ body, html {
 }
 .statusbar-overlay {
     background: #2e08a8;
+    -webkit-transition: 400ms;
+       transition: 400ms;
 }
 a {
   color: #000;
@@ -89,8 +91,8 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
 }
 h1.big {
-  font-size: 35px;
-  line-height: 35px;
+  font-size: 32px;
+  line-height: 32px;
 }
 .page-white {
   -webkit-box-sizing: border-box;
@@ -293,6 +295,7 @@ h1.big {
   margin-top: 120px;
   position:  absolute;
   z-index: 1000;
+  width: 500px;
 }
 .dashboard-nav-shadow {
   width: 100%;
@@ -328,11 +331,10 @@ h1.big {
 }
 .dashboard-hello-inner {
   position: absolute;
-    bottom: 0px;
-    overflow: auto;
-    height: 60%;
-    padding: 15px;
-    width: 80%;
+  bottom: 0px;
+  overflow: hidden;
+  height: 60%;
+  padding: 15px;
 }
 .feed {
   height: 100%;
