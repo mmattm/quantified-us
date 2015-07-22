@@ -18,7 +18,7 @@
     <%= include_gon %>
   </head>
   <body class='phone' ng-app="datavizualisation" ng-controller="DataCtrl" >
-
+    <div class="statusbar-overlay"></div>
     <!-- Status bar overlay for full screen mode (PhoneGap) -->
 
     <!-- Views -->
@@ -60,7 +60,7 @@
 
     <%= javascript_include_tag "angular/scrollglue" %>
     <%= javascript_include_tag "angular/scripts/ng-map" %>
-    <%= javascript_include_tag "http://maps.google.com/maps/api/js" %>
+    <%= javascript_include_tag "https://maps.google.com/maps/api/js" %>
     
     
   </body>
