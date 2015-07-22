@@ -1,4 +1,3 @@
-// Initialize View          
 (function() {
 
     window.F7H = {
