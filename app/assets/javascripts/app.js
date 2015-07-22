@@ -66,7 +66,7 @@
         })
     });
 
-    var a=document.getElementsByTagName("external");
+    var a=document.getElementsByClassName("external");
     for(var i=0;i<a.length;i++)
     {
         a[i].onclick=function()
