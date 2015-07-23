@@ -1,1 +1,1 @@
-resque: env TERM_CHILD=1 COUNT=2 QUEUE=user_sync_datas bundle exec rake resque:workers
+resque: env TERM_CHILD=1 QUEUE=* bundle exec rake resque:work
