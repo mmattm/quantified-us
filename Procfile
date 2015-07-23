@@ -1,2 +1,1 @@
-resque: env TERM_CHILD=1 COUNT=2 bundle exec rake resque:workers
-worker: bundle exec rake jobs:work
+resque: env TERM_CHILD=1 QUEUE=* bundle exec rake resque:work
