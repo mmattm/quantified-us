@@ -54,7 +54,8 @@
 	    return function (scope, element, attrs) {
 	        element.css({'margin-top': $('#canvas-charts').height()/2 - element.height()/2  });
 	    }
-	});;
+	})
+
 
 	// Sets up routing
 	app.config(function($routeProvider) {

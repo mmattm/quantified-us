@@ -71,8 +71,6 @@ gem 'omniauth-nikeplus'
 # Angular
 gem 'angularjs-rails'
 
-gem 'htmlbeautifier'
-
 #gem 'font-awesome-sass', '~> 4.3.0'
 
 # Use ActiveModel has_secure_password

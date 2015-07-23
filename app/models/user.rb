@@ -67,10 +67,13 @@ class User < ActiveRecord::Base
   def self.calculate_age(user)
     (Date.today - user.date_of_birth.to_date).to_i / 365
   end
+
   # Synchronize datas from user
   def self.sync_datas_process(user)
-
-    # FITBIT ————————————————————————————————————————————————
+    
+    user = User.find(user['id'])
+  
+    #FITBIT ————————————————————————————————————————————————
     if(user.service.service_model.name == 'fitbit')
 
       client = Fitgem::Client.new(
@@ -145,6 +148,9 @@ class User < ActiveRecord::Base
       end
     end
     # FITBIT END ————————————————————————————————————————————————
+
+    user.last_sync = DateTime.now;
+    user.save!
   end
 
   def self.get_sync_result

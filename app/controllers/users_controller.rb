@@ -34,8 +34,6 @@ class UsersController < ApplicationController
   def sync_datas
     # MANUAL
     User.sync_datas_process(current_user)
-    current_user.last_sync = DateTime.now;
-    current_user.save!
 
     # WITH REDIS
     #Resque.enqueue(UserSyncDatas, current_user)
