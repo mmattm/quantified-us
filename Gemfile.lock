@@ -264,6 +264,7 @@ DEPENDENCIES
   pg
   rails (= 4.2.1)
   rails_12factor
+  redis
   resque
   rmagick (~> 2.15.2)
   sass-rails (~> 5.0)

@@ -35,6 +35,8 @@ gem 'faker'
 
 gem 'geocoder'
 
+gem 'redis'
+
 gem 'resque'
 
 gem 'gon'
