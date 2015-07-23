@@ -1,0 +1,5 @@
+do_user_sync_datas:
+  every: 10s
+  class: UserSyncDatas
+  args:
+  description: Runs the perform method in MyJob
