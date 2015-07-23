@@ -1,0 +1,5 @@
+sync_datas:
+  every: 10s
+  class: UsersSyncDatas
+  args: 
+  description: hello
