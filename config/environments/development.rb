@@ -54,7 +54,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
 
 
-  #ENV["REDISTOGO_URL"] = 'redis://localhost:6379'
-  ENV["REDISTOGO_URL"] = 'redis://redistogo:054f3af49469cfaf541eb8f6171e6b1f@carp.redistogo.com:9787/'
+  ENV["REDISTOGO_URL"] = 'redis://localhost:6379'
+  #ENV["REDISTOGO_URL"] = 'redis://redistogo:054f3af49469cfaf541eb8f6171e6b1f@carp.redistogo.com:9787/'
 
 end

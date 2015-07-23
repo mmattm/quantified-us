@@ -83,5 +83,5 @@ Rails.application.configure do
   Paperclip.options[:image_magick_path] = "/opt/ImageMagick/bin"
   Paperclip.options[:command_path] = "/opt/ImageMagick/bin"
 
-  ENV["REDISTOGO_URL"] = 'redis://redistogo:054f3af49469cfaf541eb8f6171e6b1f@carp.redistogo.com:9787/'
+  ENV["REDISTOGO_URL"] = 'redis://redistogo:033a462f5971e491b77848446d345375@carp.redistogo.com:9787/'
 end
