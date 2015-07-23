@@ -75,6 +75,11 @@ gem 'angularjs-rails'
 
 #gem 'font-awesome-sass', '~> 4.3.0'
 
+
+#HEROKU
+gem 'resque-heroku'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
