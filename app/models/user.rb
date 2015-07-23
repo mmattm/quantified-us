@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
     puts user.service.service_model.name
     puts user.service['oauth_token']
     puts user.service['oauth_secret']
-
+    
     #FITBIT ————————————————————————————————————————————————
     if(user.service.service_model.name == 'fitbit')
 
