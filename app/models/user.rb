@@ -70,9 +70,12 @@ class User < ActiveRecord::Base
 
   # Synchronize datas from user
   def self.sync_datas_process(user)
-    
+    puts "Synchronize ————————————————————————————————————————————————"
     user = User.find(user['id'])
-  
+    puts user.service.service_model.name
+    puts user.service['oauth_token']
+    puts user.service['oauth_secret']
+
     #FITBIT ————————————————————————————————————————————————
     if(user.service.service_model.name == 'fitbit')
 
@@ -85,6 +88,8 @@ class User < ActiveRecord::Base
 
       # UPDATE DEVICES
       client_request = client.devices
+
+      puts client_request
 
       if client_request.any?
         client_request.each do |k|
@@ -153,9 +158,9 @@ class User < ActiveRecord::Base
     user.save!
   end
 
-  def self.get_sync_result
-    return DataCache.get_i('user/sync_user_datas')
-  end
+  # def self.get_sync_result
+  #   return DataCache.get_i('user/sync_user_datas')
+  # end
 
 
   def self.from_omniauth(auth)
