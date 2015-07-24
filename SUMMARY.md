@@ -10,5 +10,5 @@
 * [Approche scientifique](rapport/approche_scientifique.md)
 * [Etat de l'art](rapport/etat_de_lart.md)
 * [Etapes, historique](rapport/etapes,_historique.md)
-* Aspects novateurs
+* [Aspects novateurs](rapport/aspects_novateurs.md)
 
