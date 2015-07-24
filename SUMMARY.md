@@ -3,6 +3,6 @@
 * [Introduction](README.md)
 * [Sommaire](rapport/sommaire.md)
 * [Introduction](rapport/introduction.md)
-   * test
+   * [test](rapport/test.md)
 * Quantified-Self
 
