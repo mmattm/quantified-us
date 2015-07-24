@@ -43,21 +43,18 @@ Rails.application.routes.draw do
     get 'maps/new/location', to: 'maps#new_stp3'
 
 
-    
+    #API
+    namespace :api do
+      namespace :v1 do
+        jsonapi_resources :data_objs
+        jsonapi_resources :users, only: [:index, :show]
+        jsonapi_resources :comments
+      end
+    end
   end
 
   resources :services, only: [:index]
   mount Resque::Server.new, at: "/resque"
-
-  #API
-  namespace :api do
-    namespace :v1 do
-      jsonapi_resources :data_objs
-      jsonapi_resources :users, only: [:index, :show]
-      jsonapi_resources :comments
-    end
-  end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

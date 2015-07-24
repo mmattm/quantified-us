@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
     puts user.service.service_model.name
     puts user.service['oauth_token']
     puts user.service['oauth_secret']
-    
+
     #FITBIT ————————————————————————————————————————————————
     if(user.service.service_model.name == 'fitbit')
 
@@ -203,6 +203,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  # def self.is_following?(inviting_user, invited_user)
   def self.is_following(inviting_user, invited_user)
     return Relationship.exists?(inviting_id: inviting_user, invited_id: invited_user)
   end
@@ -217,6 +218,17 @@ class User < ActiveRecord::Base
     end
     return supported_metrics
   end
+
+  # def supported_metrics
+  #   supported_metrics = Set.new
+  #   trackers.all.each do |tracker|
+  #     metrics = tracker.tracker_model.data_type
+  #     metrics.each do |metric|
+  #       supported_metrics.add?(metric)
+  #     end
+  #   end
+  #   return supported_metrics
+  # end
 
   # Returns a hash that contain all metrics supported by a group of users
   def self.group_supported_metrics(users)

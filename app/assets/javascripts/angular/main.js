@@ -60,7 +60,6 @@
 	// Sets up routing
 	app.config(function($routeProvider) {
 	       $routeProvider
-	         
 	           .when('/participants', {
 	               templateUrl : '../templates/participants.html',
 	               controller  : 'ParticipantCtrl'
