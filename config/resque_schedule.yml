@@ -1,5 +1,7 @@
 sync_datas:
-  every: 10s
+  every:
+      - "1h"
+      - :first_in: '10s'
   class: UsersSyncDatas
   args: 
   description: hello

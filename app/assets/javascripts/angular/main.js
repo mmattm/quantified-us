@@ -91,6 +91,7 @@
         {'query': { 
         	method: 'GET',
         	    params: {},
+        	    headers: { 'Authorization' : 'cfeabbcd0f90be7b716cbc0e3fec2610' },
         	    isArray: true,
         	    transformResponse: function(data, header){
         	      //Getting string data in response

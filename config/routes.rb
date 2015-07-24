@@ -16,31 +16,37 @@ Rails.application.routes.draw do
     end
   end
 
-  #resources
+
+  #authenticate
+  authenticate :user do
+
+    resources :users, only: [:show, :index]
+    resources :relationships, only: [:create, :destroy, :index]
+    resources :circles, only: [:index, :show, :new, :create, :destroy]
+    resources :maps, only: [:show, :index, :new, :create, :destroy]
+    resources :comments, only: [:create]
+    resources :trackers, only: [:index, :show]
+
+    # Additional routes
+    get '/dashboard', to: 'users#dashboard', as: 'dashboard'
+    get '/settings', to: 'users#settings', as: 'settings'
+
+    # Singular routes
+    get 'sync_datas', to: 'users#sync_datas', :as => :sync_datas
+
+    get 'users/:id/followers', to: 'relationships#followers', :as => :followers
+    get 'users/:id/following', to: 'relationships#following', :as => :following
+    get 'circles/new/metrics', to: 'circles#new_stp2'
+    get 'circles/new/participants', to: 'circles#new_stp3'
+
+    get 'maps/new/metrics', to: 'maps#new_stp2'
+    get 'maps/new/location', to: 'maps#new_stp3'
+
+
+    
+  end
+
   resources :services, only: [:index]
-  resources :users, only: [:show]
-  resources :relationships, only: [:create, :destroy, :index]
-  resources :circles, only: [:index, :show, :new, :create, :destroy]
-  resources :maps, only: [:show, :index, :new, :create, :destroy]
-  resources :comments, only: [:create]
-  resources :trackers, only: [:index, :show]
-
-  # Additional routes
-  get '/dashboard', to: 'users#dashboard', as: 'dashboard'
-  get '/settings', to: 'users#settings', as: 'settings'
-
-  # Singular routes
-  get 'sync_datas', to: 'users#sync_datas', :as => :sync_datas
-
-  get 'users/:id/followers', to: 'relationships#followers', :as => :followers
-  get 'users/:id/following', to: 'relationships#following', :as => :following
-  get 'circles/new/metrics', to: 'circles#new_stp2'
-  get 'circles/new/participants', to: 'circles#new_stp3'
-
-  get 'maps/new/metrics', to: 'maps#new_stp2'
-  get 'maps/new/location', to: 'maps#new_stp3'
-
-
   mount Resque::Server.new, at: "/resque"
 
   #API
