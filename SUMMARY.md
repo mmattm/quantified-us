@@ -1,7 +1,6 @@
 # Summary
 
 * [readme](README.md)
-* Introduction
 * [Résumé, Abstract](rapport/resume,_abstract.md)
 * [Sommaire](rapport/sommaire.md)
 * [Introduction](rapport/introduction.md)
