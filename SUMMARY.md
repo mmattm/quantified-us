@@ -1,7 +1,8 @@
 # Summary
 
-* [Résumé, Abstract](rapport/resume,_abstract.md)
+* [Introduction](README.md)
 * [Sommaire](rapport/sommaire.md)
+* [Résumé, Abstract](rapport/resume,_abstract.md)
 * [Introduction](README.md)
 * [Introduction](rapport/introduction.md)
 * [Quantified-Self](rapport/quantified-self.md)
