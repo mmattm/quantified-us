@@ -5,5 +5,5 @@
 * [Introduction](rapport/introduction.md)
 * [Quantified-Self](rapport/quantified-self.md)
 * [Contenu du projet](rapport/contenu_du_projet.md)
-* 	Approche scientifique
+* [Approche scientifique](rapport/approche_scientifique.md)
 
