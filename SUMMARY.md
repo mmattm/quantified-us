@@ -2,8 +2,8 @@
 
 * [readme](README.md)
 * [Introduction](README.md)
-* [Sommaire](rapport/sommaire.md)
 * [Résumé, Abstract](rapport/resume,_abstract.md)
+* [Sommaire](rapport/sommaire.md)
 * [Introduction](rapport/introduction.md)
 * [Quantified-Self](rapport/quantified-self.md)
 * [Contenu du projet](rapport/contenu_du_projet.md)
