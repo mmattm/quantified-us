@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724081942) do
+ActiveRecord::Schema.define(version: 20150803111202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20150724081942) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "service_models", force: :cascade do |t|
+  create_table "service_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -93,9 +93,9 @@ ActiveRecord::Schema.define(version: 20150724081942) do
 
   create_table "services", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "service_model_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "service_type_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "uid"
     t.string   "oauth_token"
     t.string   "oauth_secret"
@@ -104,30 +104,30 @@ ActiveRecord::Schema.define(version: 20150724081942) do
   add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
 
   create_table "tracker_data_types", force: :cascade do |t|
-    t.integer  "tracker_model_id"
+    t.integer  "tracker_type_id"
     t.integer  "data_type_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "tracker_data_types", ["data_type_id"], name: "index_tracker_data_types_on_data_type_id", using: :btree
-  add_index "tracker_data_types", ["tracker_model_id"], name: "index_tracker_data_types_on_tracker_model_id", using: :btree
+  add_index "tracker_data_types", ["tracker_type_id"], name: "index_tracker_data_types_on_tracker_type_id", using: :btree
 
-  create_table "tracker_models", force: :cascade do |t|
-    t.integer  "service_model_id"
+  create_table "tracker_types", force: :cascade do |t|
+    t.integer  "service_type_id"
     t.string   "name"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "trackers", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "service_id"
-    t.integer  "tracker_model_id"
+    t.integer  "tracker_type_id"
     t.string   "mac_address"
     t.datetime "lastSyncTime"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "trackers", ["user_id"], name: "index_trackers_on_user_id", using: :btree

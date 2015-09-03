@@ -47,11 +47,10 @@ class User < ActiveRecord::Base
   end
 
 
-  private
-
-  def self.updateLocation(user, request)
+  def updateLocation(request)
     @location = request.location
     puts @location
+    user = self
 
     if(@location.present?)
       user.lat = @location.latitude
@@ -64,111 +63,68 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.calculate_age(user)
-    (Date.today - user.date_of_birth.to_date).to_i / 365
+  def calculate_age
+    (Date.today - self.date_of_birth.to_date).to_i / 365
   end
 
   # Synchronize datas from user
-  def self.sync_datas_process(user)
-    puts "Synchronize ————————————————————————————————————————————————"
-    user = User.find(user['id'])
-    puts user.service.service_model.name
-    puts user.service['oauth_token']
-    puts user.service['oauth_secret']
+  def sync_datas_process
+    SyncDatas.sync(self)
+    # user = self
+  end
 
-    #FITBIT ————————————————————————————————————————————————
-    if(user.service.service_model.name == 'fitbit')
+  def is_following(invited_user)
+    return Relationship.exists?(inviting_id: self, invited_id: invited_user)
+  end
 
-      client = Fitgem::Client.new(
-        :consumer_key => Devise.omniauth_configs[:fitbit].strategy.consumer_key,
-        :consumer_secret => Devise.omniauth_configs[:fitbit].strategy.consumer_secret,
-        :token => user.service['oauth_token'],
-        :secret => user.service['oauth_secret'],
-      :unit_system => Fitgem::ApiUnitSystem.METRIC)
-
-      # UPDATE DEVICES
-      client_request = client.devices
-
-      puts client_request
-
-      if client_request.any?
-        client_request.each do |k|
-          myTracker = Tracker.where(mac_address: k['mac'], user_id: user).first_or_initialize
-          # myTracker.device = k['deviceVersion']
-          myTracker.tracker_model = TrackerModel.where(name: k['deviceVersion']).first()
-          myTracker.user = user
-          myTracker.service = user.service
-          myTracker.lastSyncTime = k['lastSyncTime']
-          #pp myTracker
-          myTracker.save
-
-          #Get the name of the tracker example
-          #pp myTracker.tracker_model.name
-        end
+  # Returns a hash that contain all supported metrics from all differents trackers
+  def supported_metrics
+    supported_metrics = Set.new
+    self.trackers.all.each do |tracker|
+      metrics = tracker.tracker_type.data_type
+      metrics.each do |metric|
+        supported_metrics.add?(metric)
       end
+    end
+    return supported_metrics
+  end
 
-      #return
-      #UPDATE DATAS
-      DataType.find_each do |dataType|
-        case dataType.name
-        when "Steps"
-          request = '/activities/log/steps'
-        when "Distance"
-          request = '/activities/log/distance'
-        when "Calories"
-          request = '/activities/log/calories'
-        when "Floors"
-          request = '/activities/log/floors'
-        when "Activity"
-          request = '/activities/log/minutesFairlyActive'
-        when "Sleep Time"
-          request = '/sleep/minutesAsleep'
-        when "Weight"
-          request = '/body/weight'
-        when "Heart Rate"
-          request = ''
-        when "Mood"
-          request = ''
-        end
 
-        client_request = client.data_by_time_range(request, {:base_date => Date.today, :period => "3m"})
-        # pp dataType.name
-        # pp steps
+  # Returns a hash that contain all metrics supported by a group of users
+  def self.group_supported_metrics(users)
+    supported_metrics = Array.new
 
-        if(!client_request['errors'].present?)
-
-          values = client_request.values[0]
-          values.each do |k|
-            val = k['value'].to_f
-            date = k['dateTime']
-            myDataObj = DataObj.where(date: date, data_type_id: dataType.id, user_id: user).first_or_initialize
-            # UPDATE RECORD ONLY IF VALUE CHANGE
-            if(myDataObj.value != val)
-              myDataObj.value = val
-              myDataObj.save
-            end
-            #end
-          end
+    users.each do |user|
+      user.trackers.all.each do |tracker|
+        metrics = tracker.tracker_type.data_type
+        metrics.each do |metric|
+          supported_metrics.push(metric)
         end
       end
     end
-    # FITBIT END ————————————————————————————————————————————————
 
-    user.last_sync = DateTime.now;
-    user.save!
+    h = Hash.new(0)
+    supported_metrics.each { | v | h.store(v, h[v]+1) }
+
+    s = Set.new
+    h.each do | k, v |
+      if(v > 1)
+        s.add?(k)
+      end
+    end
+
+    return s
   end
 
-  # def self.get_sync_result
-  #   return DataCache.get_i('user/sync_user_datas')
-  # end
 
+  private
 
   def self.from_omniauth(auth)
 
-    # Find Service model
-    serviceModel = ServiceModel.where(name: auth.provider).first()
+    # Find Service type
+    serviceType = ServiceType.where(name: auth.provider).first()
     # Find user service
-    service = Service.where(service_model_id: serviceModel, uid: auth.uid).first
+    service = Service.where(service_type_id: serviceType, uid: auth.uid).first
     if(service.present?)
       return User.find(service.user_id)
     else
@@ -196,63 +152,10 @@ class User < ActiveRecord::Base
         service.oauth_token = data["credentials"]['token']
         service.oauth_secret = data["credentials"]['secret']
 
-        service.service_model = ServiceModel.where(name: data["provider"]).first
+        service.service_type = ServiceType.where(name: data["provider"]).first
         user.service = service
 
       end
     end
-  end
-
-  # def self.is_following?(inviting_user, invited_user)
-  def self.is_following(inviting_user, invited_user)
-    return Relationship.exists?(inviting_id: inviting_user, invited_id: invited_user)
-  end
-  # Returns a hash that contain all supported metrics from all differents trackers
-  def self.supported_metrics(user)
-    supported_metrics = Set.new
-    user.trackers.all.each do |tracker|
-      metrics = tracker.tracker_model.data_type
-      metrics.each do |metric|
-        supported_metrics.add?(metric)
-      end
-    end
-    return supported_metrics
-  end
-
-  # def supported_metrics
-  #   supported_metrics = Set.new
-  #   trackers.all.each do |tracker|
-  #     metrics = tracker.tracker_model.data_type
-  #     metrics.each do |metric|
-  #       supported_metrics.add?(metric)
-  #     end
-  #   end
-  #   return supported_metrics
-  # end
-
-  # Returns a hash that contain all metrics supported by a group of users
-  def self.group_supported_metrics(users)
-    supported_metrics = Array.new
-
-    users.each do |user|
-      user.trackers.all.each do |tracker|
-        metrics = tracker.tracker_model.data_type
-        metrics.each do |metric|
-          supported_metrics.push(metric)
-        end
-      end
-    end
-
-    h = Hash.new(0)
-    supported_metrics.each { | v | h.store(v, h[v]+1) }
-
-    s = Set.new
-    h.each do | k, v |
-      if(v > 1)
-        s.add?(k)
-      end
-    end
-
-    return s
   end
 end

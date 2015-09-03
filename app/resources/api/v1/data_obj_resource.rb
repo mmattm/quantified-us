@@ -16,6 +16,7 @@ module Api
       has_one :user
 
       filters :value, :data_type_id, :date, :user, :age, :gender, :pos, :user
+      #include_resources = ['user']
 
       def self.apply_filter(records, filter, value, options)
         case filter

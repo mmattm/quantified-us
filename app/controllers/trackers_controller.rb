@@ -5,6 +5,6 @@ class TrackersController < ApplicationController
 
   def show
   	@tracker = Tracker.find(params[:id])
-  	@tracker_metrics = @tracker.tracker_model.data_type
+  	@tracker_metrics = @tracker.tracker_type.data_type
   end
 end

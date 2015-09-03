@@ -33,10 +33,10 @@ class UsersController < ApplicationController
 
   def sync_datas
     # MANUAL
-   # User.sync_datas_process(current_user)
+    RefreshDataJob.perform_later current_user
 
-    # WITH REDIS
-    Resque.enqueue(UserSyncDatas, current_user)
+    # WITH REDIS OLD WAY
+    #Resque.enqueue(UserSyncDatas, current_user)
     redirect_to dashboard_path
   end
 

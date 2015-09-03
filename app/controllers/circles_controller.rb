@@ -12,7 +12,7 @@ class CirclesController < ApplicationController
   end
 
   def new_stp2
-    @metrics = User.supported_metrics(current_user)
+    @metrics = current_user.supported_metrics
   end
 
   def new_stp3

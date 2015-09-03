@@ -37,7 +37,7 @@ gem 'geocoder'
 
 gem 'redis'
 
-gem 'resque'
+#gem 'resque'
 
 gem 'gon'
 
@@ -66,6 +66,10 @@ gem 'omniauth-nikeplus'
 
 # EMBER
 
+#MONITORING 
+gem 'newrelic_rpm'
+#gem "skylight"
+
 # gem "ember-rails"
 # gem 'ember-source'
 # gem "ember-cli-rails"
@@ -74,13 +78,13 @@ gem 'omniauth-nikeplus'
 gem 'angularjs-rails'
 
 #gem 'font-awesome-sass', '~> 4.3.0'
-
-
 #HEROKU
 #gem 'resque-heroku'
 
-gem 'resque-scheduler' # job scheduling
+#gem 'resque-scheduler' # job scheduling
 
+gem 'sidekiq'
+gem "sidekiq-cron"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -104,6 +108,8 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'railroady'
 end
 
 gem 'rails_12factor', group: :production

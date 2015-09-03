@@ -19,9 +19,9 @@
       <h2 class="center"><%= @trackers.count %> Activity Tracker synced</h2>
       <% @trackers.each do |tracker| -%>
         <%= link_to tracker do %>
-          <div class="cover tracker-list-element" style="background : url('<%= asset_path("png/trackers/"+tracker.tracker_model.name.downcase.tr(" ", "_")+".png") %>') no-repeat center center; ">
+          <div class="cover tracker-list-element" style="background : url('<%= asset_path("png/trackers/"+tracker.tracker_type.name.downcase.tr(" ", "_")+".png") %>') no-repeat center center; ">
             <div class="black-overlay">
-              <h2 class="white center uppercase no-margin"><%= tracker.service.service_model.name %> <%= tracker.tracker_model.name %></h2>
+              <h2 class="white center uppercase no-margin"><%= tracker.service.service_type.name %> <%= tracker.tracker_type.name %></h2>
             </div>
           </div>
         <% end %>

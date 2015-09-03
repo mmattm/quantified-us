@@ -10,7 +10,7 @@ class MapsController < ApplicationController
   end
 
   def new_stp2
-    @metrics = User.supported_metrics(current_user)
+    @metrics = current_user.supported_metrics
   end
 
   def new_stp3
@@ -20,7 +20,7 @@ class MapsController < ApplicationController
     @map = Map.find(params[:id])
     gon.model = 'map';
 
-    types = User.supported_metrics(current_user)
+    types = current_user.supported_metrics
 
     gon.types_svg = []
     types.each do |type|

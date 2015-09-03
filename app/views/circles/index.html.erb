@@ -51,7 +51,7 @@
               <h4 class="center no-margin"><%= map.name %> </h4>
               <div class="row no-gutter">
                 <div class="col-50"><h4 class="center no-margin"><i class="fa fa-map-marker"></i> <%= map.distance.to_i %> m</h4></div>
-                <div class="col-50"><h4 class="center no-margin"><i class="fa fa-bar-chart"></i> <%= User.supported_metrics(current_user).count %></h4></div>
+                <div class="col-50"><h4 class="center no-margin"><i class="fa fa-bar-chart"></i> <%= current_user.supported_metrics.count %></h4></div>
               </div>
               <% end -%>
               <% end -%>

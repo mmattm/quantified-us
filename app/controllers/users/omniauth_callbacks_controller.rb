@@ -10,7 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           sign_in @user#this will throw if @user is not activated
           #redirect_to @user
           
-          User.updateLocation(@user, request)
+          @user.updateLocation(request)
           redirect_to dashboard_path
         else 
           redirect_to root_path

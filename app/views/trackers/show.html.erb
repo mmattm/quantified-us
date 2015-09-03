@@ -4,7 +4,7 @@
          <%= link_to( raw('<i class="icon icon-back"></i>'), @user, { :class => "link icon-only back", "data-reload" => 'true',  "data-ignoreCache" => 'true' } ) %>
 
       </div>
-      <div class="center sliding"><%= @tracker.tracker_model.name %></div>
+      <div class="center sliding"><%= @tracker.tracker_type.name %></div>
       <div class="right"></div>
    </div>
 </div>
@@ -14,11 +14,11 @@
   <div class='page'>
     <div class='page-content follow'>
       <div class='list-block'>
-          <div class="tracker-header cover" style="background: url('<%= asset_path("png/trackers/"+@tracker.tracker_model.name.downcase.tr(" ", "_")+".png") %>') no-repeat center center; ">
+          <div class="tracker-header cover" style="background: url('<%= asset_path("png/trackers/"+@tracker.tracker_type.name.downcase.tr(" ", "_")+".png") %>') no-repeat center center; ">
            <div class="black-overlay">
             <div class="track-header-title">
               
-              <h2 class="white center uppercase no-margin"><%= @tracker.service.service_model.name %> <%= @tracker.tracker_model.name %></h2>
+              <h2 class="white center uppercase no-margin"><%= @tracker.service.service_type.name %> <%= @tracker.tracker_type.name %></h2>
               <h4 class="white center uppercase no-margin third-size light">Last Synchronization <%= time_ago_in_words(current_user.last_sync) unless current_user.last_sync.blank? %> ago</h4>
              
             </div>

@@ -70,15 +70,15 @@ services = {
 }
 
 services.each do |serviceName, tracker|
-  serviceModel = ServiceModel.new
-  serviceModel.name = serviceName
-  serviceModel.save
+  serviceType = ServiceType.new
+  serviceType.name = serviceName
+  serviceType.save
 
-  tracker.each do |trackerModel, metrics|
-    trackerModel = TrackerModel.create(:service_model => serviceModel, :name => trackerModel)
+  tracker.each do |trackerType, metrics|
+    trackerType = TrackerType.create(:service_type => serviceType, :name => trackerType)
     metrics.each do |metric|
-      #pp trackerModel
-      trackerModel.data_type << DataType.where(code: metric).first()
+      #pp TrackerType
+      trackerType.data_type << DataType.where(code: metric).first()
     end
   end
 end
@@ -100,7 +100,7 @@ service               = Service.new
 service.uid           = '3DR77X'
 service.oauth_token   = '46ef9d772f55b238dbabbe7a1034823c'
 service.oauth_secret  = '56b530f2f555771f1eb6a39679aaf836'
-service.service_model = ServiceModel.where(name: 'fitbit').first()
+service.service_type = ServiceType.where(name: 'fitbit').first()
 admin.service         = service
 service.save!
 
@@ -109,7 +109,7 @@ tracker.mac_address   = 'A7E1E819AAC4'
 tracker.lastSyncTime  = Date.today
 tracker.user          = admin
 tracker.service       = service
-tracker.tracker_model = TrackerModel.where(name: 'Charge HR').first()
+tracker.tracker_type = TrackerType.where(name: 'Charge HR').first()
 tracker.save!
 
 puts "Hello Admin"
@@ -178,7 +178,7 @@ NBR_OF_USERS.times do |i|
   tracker.lastSyncTime  = Date.today
   tracker.user          = user1
   tracker.service       = service
-  tracker.tracker_model = TrackerModel.where(name: 'Charge').first()
+  tracker.tracker_type = TrackerType.where(name: 'Charge').first()
   tracker.save!
 
   # RELATIONSHIPS

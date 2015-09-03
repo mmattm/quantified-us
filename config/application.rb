@@ -23,5 +23,18 @@ module QuantifiedUs
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     
+    config.active_job.queue_adapter = :sidekiq
+
+
+    # CREATE RECURRING JOB With Sidekiq
+    job = Sidekiq::Cron::Job.new(name: 'Refresh users data - every 10min', cron: '*/10 * * * *', klass: 'RefreshUsersDataJob')
+
+    if job.valid?
+      job.save
+      puts job
+    else
+      puts job.errors
+    end
+
   end
 end

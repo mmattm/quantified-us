@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   def index
-    @services = ServiceModel.all
+    @services = ServiceType.all
 
     @services_provider = []
     @services.each do |service|

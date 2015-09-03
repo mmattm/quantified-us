@@ -24,7 +24,7 @@
                      <% end %>
                      <% if @user == current_user %>
                      <div class="item-after">
-                     <% if User.is_following(@user, invitation.inviting_user) %>
+                     <% if @user.is_following(invitation.inviting_user) %>
                      <a class="button button-round active" relationship-id="<%= @user.sent_invites.where(invited_id: invitation.inviting_user.id).first.id %>"><i class="fa fa-check"></i> Followed</a>
                      <% else %>
                      <!-- <a class="button button-round black" invited-id="<%= invitation.inviting_user.id %>"> Not Followed</a> -->
